@@ -28,8 +28,15 @@ public class User extends Base {
     @Column(nullable = true)
     private String bio;
 
+    // In User.java
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonManagedReference
+    @JsonManagedReference("user-questions")
     private List<Question> questions = new ArrayList<>();
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference("user-answers")
+    private List<Answer> answers = new ArrayList<>();
+
+
 }
 
